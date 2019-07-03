@@ -201,12 +201,15 @@
            [:tr
             [:td
              [:div {:style "text-align: center;"}
-              [:a {:href "#" :target "_blank"}
+              [:a {:href "https://twitter.com/uxboxtool" :target "_blank"}
                [:img {:style "display: inline-block; width: 25px; margin-right: 5px;"
                       :src (md/resolve-asset "images/email/twitter.png")}]]
-              [:a {:href "#" :target "_blank"}
+              [:a {:href "https://github.com/uxbox" :target "_blank"}
                [:img {:style "display: inline-block; width: 25px; margin-right: 5px;"
                       :src (md/resolve-asset "images/email/github.png")}]]
+              [:a {:href "https://tree.taiga.io/project/uxbox" :target "_blank"}
+               [:img {:style "display: inline-block; width: 25px; margin-right: 5px;"
+                      :src (md/resolve-asset "images/email/taiga.png")}]]
               [:a {:href "#" :target "_blank"}
                [:img {:style "display: inline-block; width: 25px; margin-right: 5px;"
                       :src (md/resolve-asset "images/email/linkedin.png")}]]]]]
