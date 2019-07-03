@@ -47,6 +47,7 @@
 
    :email-reply-to (lookup-env env :uxbox-email-reply-to "no-reply@uxbox.io")
    :email-from (lookup-env env :uxbox-email-from "no-reply@uxbox.io")
+   :email-from (lookup-env env :uxbox-support-email "support@uxbox.io")
 
    :smtp-host (lookup-env env :uxbox-smtp-host "localhost")
    :smtp-port (lookup-env env :uxbox-smtp-port 25)

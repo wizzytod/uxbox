@@ -57,6 +57,7 @@ services:
       # Mail setup
       - UXBOX_EMAIL_REPLY_TO="no-reply@uxbox.io"
       - UXBOX_EMAIL_FROM="no-reply@uxbox.io"
+      - UXBOX_SUPPORT_EMAIL="support@uxbox.io"
       # STMP setup
       - UXBOX_SMTP_HOST="localhost"
       - UXBOX_SMTP_PORT=25
