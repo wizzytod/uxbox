@@ -19,6 +19,8 @@
 
  :auth-options {:alg :a256kw :enc :a128cbc-hs256}
 
+ :hostname "uxbox.io"
+
  :email {:reply-to "no-reply@uxbox.io"
          :from "no-reply@uxbox.io"
          :support "support@uxbox.io"}

@@ -45,9 +45,11 @@
    :assets-directory (lookup-env env :uxbox-assets-directory "resources/public/static")
    :assets-uri (lookup-env env :uxbox-assets-uri "http://localhost:6060/static/")
 
+   :hostname (lookup-env env :uxbox-hostname "uxbox.io")
+
    :email-reply-to (lookup-env env :uxbox-email-reply-to "no-reply@uxbox.io")
    :email-from (lookup-env env :uxbox-email-from "no-reply@uxbox.io")
-   :email-from (lookup-env env :uxbox-support-email "support@uxbox.io")
+   :support-email (lookup-env env :uxbox-support-email "support@uxbox.io")
 
    :smtp-host (lookup-env env :uxbox-smtp-host "localhost")
    :smtp-port (lookup-env env :uxbox-smtp-port 25)

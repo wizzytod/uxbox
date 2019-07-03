@@ -53,12 +53,17 @@
                  (:email-from cfg/config))
         reply-to (or (:email/reply-to context)
                      (:email-reply-to cfg/config)
-                     from)]
+                     from)
+        support (or (:email/support context)
+                     (:support-email cfg/config))
+        hostname (:hostname cfg/config)]
     {:subject (render-subject email context)
      :body (render-body-alternatives email context)
      :to (:email/to context)
      :from from
-     :reply-to reply-to}))
+     :reply-to reply-to
+     :support support
+     :hostname hostname}))
 
 (def valid-priority? #{:high :low})
 (def valid-email-identifier? #(contains? @emails %))
