@@ -7,6 +7,7 @@ const rename = require("gulp-rename");
 const gulpif = require("gulp-if");
 const gzip = require("gulp-gzip");
 const cleancss = require("gulp-clean-css");
+const gutil = require("gulp-util");
 
 const paths = {};
 paths.app = "./resources/";
@@ -67,17 +68,27 @@ function scssPipeline(options) {
   };
 }
 
-gulp.task("scss:main", scssPipeline({
-  input: paths.app + "styles/main.scss",
+gulp.task("scss:main-light", scssPipeline({
+  input: paths.app + "styles/main-light.scss",
   output: paths.output + "css/"
 }));
 
-gulp.task("scss:view", scssPipeline({
-  input: paths.app + "styles/view.scss",
+gulp.task("scss:view-light", scssPipeline({
+  input: paths.app + "styles/view-light.scss",
   output: paths.output + "css/"
 }));
 
-gulp.task("scss", gulp.parallel("scss:main", "scss:view"));
+gulp.task("scss:main-dark", scssPipeline({
+  input: paths.app + "styles/main-dark.scss",
+  output: paths.output + "css/"
+}));
+
+gulp.task("scss:view-dark", scssPipeline({
+  input: paths.app + "styles/view-dark.scss",
+  output: paths.output + "css/"
+}));
+
+gulp.task("scss", gulp.parallel("scss:main-light", "scss:view-light", "scss:main-dark", "scss:view-dark"));
 
 // Templates
 
@@ -86,8 +97,10 @@ function templatePipeline(options) {
     const input = options.input;
     const output = options.output;
     const ts = Math.floor(new Date());
+    const th = gutil.env.theme || 'light';
     const tmpl = mustache({
-      ts: ts
+      ts: ts,
+      th: th
     });
 
     return gulp.src(input)
@@ -146,17 +159,27 @@ gulp.task("dist:template", gulp.parallel("dist:template:view", "dist:template:ma
 
 // Styles
 
-gulp.task("dist:scss:main", scssPipeline({
-  input: paths.app + "styles/main.scss",
+gulp.task("dist:scss:main-light", scssPipeline({
+  input: paths.app + "styles/main-light.scss",
   output: paths.dist + "css/"
 }));
 
-gulp.task("dist:scss:view", scssPipeline({
-  input: paths.app + "styles/view.scss",
+gulp.task("dist:scss:view-light", scssPipeline({
+  input: paths.app + "styles/view-light.scss",
   output: paths.dist + "css/"
 }));
 
-gulp.task("dist:scss", gulp.parallel("dist:scss:main", "dist:scss:view"));
+gulp.task("dist:scss:main-dark", scssPipeline({
+  input: paths.app + "styles/main-dark.scss",
+  output: paths.dist + "css/"
+}));
+
+gulp.task("dist:scss:view-dark", scssPipeline({
+  input: paths.app + "styles/view-dark.scss",
+  output: paths.dist + "css/"
+}));
+
+gulp.task("dist:scss", gulp.parallel("dist:scss:main-light", "dist:scss:view-light", "dist:scss:main-dark", "dist:scss:view-dark"));
 
 // Copy
 

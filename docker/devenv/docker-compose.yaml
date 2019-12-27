@@ -36,6 +36,7 @@ services:
 
     environment:
       - CLOJURE_OPTS="-J-XX:-OmitStackTraceInFastThrow"
+      - UXBOX_THEME=light
       - UXBOX_DATABASE_URI="postgresql://postgres/uxbox"
       - UXBOX_DATABASE_USERNAME="uxbox"
       - UXBOX_DATABASE_PASSWORD="uxbox"
