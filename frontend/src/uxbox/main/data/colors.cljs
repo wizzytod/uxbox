@@ -9,7 +9,7 @@
    [beicon.core :as rx]
    [clojure.set :as set]
    [potok.core :as ptk]
-   [uxbox.main.repo.core :as rp]
+   [uxbox.main.repo :as rp]
    [uxbox.main.store :as st]
    [uxbox.util.color :as color]
    [uxbox.util.i18n :refer [tr]]
@@ -79,7 +79,7 @@
 
 (defn create-collection
   []
-  (let [id (uuid/random)]
+  (let [id (uuid/next)]
     (CreateCollection. id)))
 
 ;; --- Persist Collections

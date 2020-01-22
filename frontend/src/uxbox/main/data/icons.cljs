@@ -10,7 +10,7 @@
    [beicon.core :as rx]
    [cuerdas.core :as str]
    [potok.core :as ptk]
-   [uxbox.main.repo.core :as rp]
+   [uxbox.main.repo :as rp]
    [uxbox.main.store :as st]
    [uxbox.util.data :refer (jscoll->vec)]
    [uxbox.util.dom :as dom]
@@ -201,7 +201,7 @@
               (prepare [[content metadata]]
                 {:collection-id id
                  :content content
-                 :id (uuid/random)
+                 :id (uuid/next)
                  ;; TODO Keep the name of the original icon
                  :name (str "Icon " (gensym "i"))
                  :metadata metadata})]
