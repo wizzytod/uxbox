@@ -148,6 +148,7 @@ your UXBOX instance:
 -	`-e UXBOX_API_URL=...` (defaults to `/api`)
 -	`-e UXBOX_VIEW_URL=...` (defaults to `/view/`)
 -	`-e UXBOX_DEMO_WARNING=...` (not defined, setting any value will activate demo mode)
+-	`-e UXBOX_THEME=...` (defaults to `light`, accepts `dark` to enable UXBOX dark theme)
 
 Available at runtime:
 -	`-e LANG=...` (defaults to `en_US.UTF-8`)
