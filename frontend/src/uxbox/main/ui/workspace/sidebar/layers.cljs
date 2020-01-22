@@ -10,7 +10,6 @@
    [lentes.core :as l]
    [rumext.alpha :as mf]
    [uxbox.builtins.icons :as i]
-   [uxbox.main.data.pages :as udp]
    [uxbox.main.data.workspace :as dw]
    [uxbox.main.refs :as refs]
    [uxbox.main.store :as st]
@@ -19,7 +18,7 @@
    [uxbox.main.ui.workspace.sortable :refer [use-sortable]]
    [uxbox.util.data :refer [classnames enumerate]]
    [uxbox.util.dom :as dom]
-   [uxbox.util.i18n :refer (tr)]))
+   [uxbox.util.i18n :as i18n :refer [t]]))
 
 (def ^:private shapes-iref
   (-> (l/key :shapes)
@@ -108,11 +107,10 @@
                           (dw/select-shape id)))))
 
           (on-drop [item monitor]
-            (st/emit! ::dw/page-data-update))
+            (st/emit! dw/commit-shape-order-change))
 
           (on-hover [item monitor]
-            (st/emit! (dw/change-shape-order {:id (:shape-id item)
-                                              :index index})))]
+            (st/emit! (dw/temporal-shape-order-change (:shape-id item) index)))]
     (let [selected? (contains? selected (:id shape))
           [dprops dnd-ref] (use-sortable
                             {:type "layer-item"
@@ -206,7 +204,7 @@
           :class (when-not collapsed? "inverse")}
          i/arrow-slide]]
        [:ul
-        (for [[index shape] shapes]
+        (for [[index shape] (reverse shapes)]
           [:& layer-item {:shape shape
                           :selected selected
                           :index index
@@ -237,7 +235,8 @@
 
 (mf/defc layers-toolbox
   [{:keys [page] :as props}]
-  (let [on-click #(st/emit! (dw/toggle-layout-flag :layers))
+  (let [locale (i18n/use-locale)
+        on-click #(st/emit! (dw/toggle-layout-flag :layers))
 
         selected (mf/deref refs/selected-shapes)
         data (mf/deref refs/workspace-data)
@@ -259,8 +258,8 @@
     [:div#layers.tool-window
      [:div.tool-window-bar
       [:div.tool-window-icon i/layers]
-      [:span (tr "ds.settings.layers")]
-      [:div.tool-window-close {:on-click on-click} i/close]]
+      [:span (t locale "workspace.sidebar.layers")]
+      #_[:div.tool-window-close {:on-click on-click} i/close]]
      [:div.tool-window-content
       [:& canvas-list {:canvas canvas
                        :shapes all-shapes
