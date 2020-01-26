@@ -10,6 +10,7 @@ rm -rf $2 || exit 1;
 rsync -avr \
       --exclude="/test" \
       --exclude="/resources/public/media" \
+      --exclude="/file-uploads" \
       --exclude="/target" \
       --exclude="/scripts" \
       --exclude="/.*" \
