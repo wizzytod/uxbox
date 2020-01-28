@@ -35,12 +35,14 @@
 (s/def ::fullname ::fm/not-empty-string)
 (s/def ::username ::fm/not-empty-string)
 (s/def ::language ::fm/not-empty-string)
+(s/def ::theme ::fm/not-empty-string)
 (s/def ::email ::fm/email)
 
 (s/def ::profile-form
   (s/keys :req-un [::fullname
                    ::username
                    ::language
+                   ::theme
                    ::email]))
 
 (defn- on-error
@@ -122,6 +124,15 @@
                             :on-change (fm/on-input-change form :language)}
       [:option {:value "en"} "English"]
       [:option {:value "fr"} "Français"]]
+
+     [:span.user-settings-label (tr "settings.profile.section-theme-data")]
+     [:select.input-select {:value (:theme data)
+                            :name "theme"
+                            :class (fm/error-class form :theme)
+                            :on-blur (fm/on-input-blur form :theme)
+                            :on-change (fm/on-input-change form :theme)}
+      [:option {:value "light"} "Light"]
+      [:option {:value "dark"} "Dark"]]
 
      [:input.btn-primary
       {:type "submit"

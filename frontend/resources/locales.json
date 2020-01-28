@@ -700,6 +700,13 @@
       "fr" : "Langue par défaut"
     }
   },
+  "settings.profile.section-theme-data" : {
+    "used-in" : [ "src/uxbox/main/ui/settings/profile.cljs:126" ],
+    "translations" : {
+      "en" : "Default theme",
+      "fr" : "Thème par défaut"
+    }
+  },
   "settings.profile.your-avatar" : {
     "used-in" : [ "src/uxbox/main/ui/settings/profile.cljs:159" ],
     "translations" : {

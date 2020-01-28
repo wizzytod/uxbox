@@ -24,6 +24,7 @@
 (s/def ::email ::us/email)
 (s/def ::password string?)
 (s/def ::language string?)
+(s/def ::theme string?)
 (s/def ::photo string?)
 (s/def ::created-at inst?)
 (s/def ::password-1 string?)
@@ -69,7 +70,8 @@
   (s/keys :req-un [::fullname
                    ::email
                    ::username
-                   ::language]))
+                   ::language
+                   ::theme]))
 
 (defn form->update-profile
   [data on-success on-error]
@@ -86,7 +88,8 @@
                        (assoc :fullname (:fullname data))
                        (assoc :email (:email data))
                        (assoc :username (:username data))
-                       (assoc-in [:metadata :language] (:language data)))]
+                       (assoc-in [:metadata :language] (:language data))
+                       (assoc-in [:metadata :theme] (:theme data)))]
           #_(->> (rp/req :update/profile data)
                (rx/map :payload)
                (rx/do on-success)
