@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>UXBOX - The Open-Source prototyping tool</title>
-    <link href="css/main-{{& th}}.css?ts={{& ts}}" rel="stylesheet" type="text/css" />
+    <link id="theme" href="css/main-{{& th}}.css?ts={{& ts}}" rel="stylesheet" type="text/css" />
     <link rel="icon" href="/images/favicon.png" />
   </head>
   <body>
@@ -15,6 +15,6 @@
 
     <script src="js/cljs_base.js?ts={{& ts}}"></script>
     <script src="js/main.js?ts={{& ts}}"></script>
-    <script>uxbox.main.init({{& tr }})</script>
+    <script>uxbox.main.init({{& tr }}, ["light", "dark"])</script>
   </body>
 </html>
