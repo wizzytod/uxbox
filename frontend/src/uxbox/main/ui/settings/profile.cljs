@@ -19,14 +19,17 @@
    [uxbox.util.forms :as fm]
    [uxbox.util.i18n :as i18n :refer [tr]]
    [uxbox.util.interop :refer [iterable->seq]]
-   [uxbox.util.messages :as um]))
+   [uxbox.util.messages :as um]
+   [uxbox.util.theme :as theme]))
 
 
 (defn- profile->form
   [profile]
-  (let [language (get-in profile [:metadata :language])]
+  (let [language (get-in profile [:metadata :language])
+        theme (get-in profile [:metadata :theme])]
     (-> (select-keys profile [:fullname :username :email])
-        (cond-> language (assoc :language language)))))
+        (cond-> language (assoc :language language))
+        (cond-> theme (assoc :theme theme)))))
 
 (def ^:private profile-ref
   (-> (l/key :profile)
@@ -60,7 +63,8 @@
 
 (defn- initial-data
   []
-  (merge {:language i18n/locale}
+  (merge {:language i18n/locale
+          :theme theme/theme}
          (profile->form (deref profile-ref))))
 
 (defn- on-submit

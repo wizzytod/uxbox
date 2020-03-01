@@ -14,7 +14,8 @@
    [uxbox.main.repo :as rp]
    [uxbox.util.i18n :as i18n :refer [tr]]
    [uxbox.util.messages :as uum]
-   [uxbox.util.storage :refer [storage]]))
+   [uxbox.util.storage :refer [storage]]
+   [uxbox.util.theme :as theme]))
 
 ;; --- Common Specs
 
@@ -90,6 +91,9 @@
                        (assoc :username (:username data))
                        (assoc-in [:metadata :language] (:language data))
                        (assoc-in [:metadata :theme] (:theme data)))]
+          ;; TODO move to profile-fetched when server side will be done
+          (when-let [theme (get-in data [:metadata :theme])]
+            (theme/set-current-theme! theme))
           #_(->> (rp/req :update/profile data)
                (rx/map :payload)
                (rx/do on-success)
