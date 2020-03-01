@@ -60,7 +60,7 @@
 
 (defn- initial-data
   []
-  (merge {:language @i18n/locale}
+  (merge {:language i18n/locale}
          (profile->form (deref profile-ref))))
 
 (defn- on-submit
